@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD</title>
+  <link rel="stylesheet" href="crud.css">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <span>Carteira de Ações</span>
+      <button onclick="openModal()" id="new">Incluir</i></button>
+    </div>
+
+    <div class="divTable">
+      <table>
+        <thead>
+          <tr>
+            <th>Ativo</th>
+            <th>Quantidade</th>
+            <th>Preço Médio</th>
+            <th>Investimento</th>
+            <th>Preço Atual</th>
+            <th>Lucro/Prejuízo</th>
+            <th>(%)</th>
+            <th class="acao">Editar</th>
+            <th class="acao">Excluir</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal-container">
+      <div class="modal">
+        <form>
+          <label for="m-ativo">Ativo</label>
+          <input id="m-ativo" type="text" required />
+
+          <label for="m-quantidade">Quantidade</label>
+          <input id="m-quantidade" type="number" required />
+
+          <label for="m-precoMedio">Preço Médio</label>
+          <input id="m-precoMedio" type="number" required />
+          
+          <label for="m-precoAtual"> Preço Atual</label>
+          <input id="m-precoAtual" type="number" required />
+        
+          <button id="btnSalvar">Salvar</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <script src="crud.js"></script>
+</body>
+
+</html>
