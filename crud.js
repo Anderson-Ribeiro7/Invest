@@ -5,13 +5,11 @@ const sQuantidade = document.querySelector('#m-quantidade')
 const sPrecoMedio = document.querySelector('#m-precoMedio')
 const sPrecoAtual = document.querySelector('#m-precoAtual')
 
-
-
 const btnSalvar = document.querySelector('#btnSalvar')
 
 let itens
 let id
-
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 function openModal(edit = false, index = 0) {
   modal.classList.add('active')
 
@@ -20,7 +18,6 @@ function openModal(edit = false, index = 0) {
       modal.classList.remove('active')
     }
   }
-
   if (edit) {
     sAtivo.value = itens[index].ativo
     sQuantidade.value = itens[index].quantidade
@@ -47,6 +44,7 @@ function deleteItem(index) {
   setItensBD()
   loadItens()
 }
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 function insertItem(item, index) {
   let tr = document.createElement('tr')
   
@@ -58,7 +56,7 @@ function insertItem(item, index) {
     <td>R$ ${item.investCalculado }</td>
     <td>R$ ${item.precoatual}</td>
     <td>R$ ${item.lucroCalculado }</td>
-    <td>${item.porcentagem}</td>
+    <td>${item.porcentagemCalculada}</td>
     <td class="acao">
       <button onclick="editItem(${index})"><i class='bx bx-edit' ></i></button>
     </td>
@@ -68,26 +66,30 @@ function insertItem(item, index) {
   `
   tbody.appendChild(tr)
 }
-
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 function investimento(quantidade, precoCompra){
   var investResultado = (quantidade*precoCompra)
-  return investResultado
+  var ivestimentoFinal = investResultado.toFixed(2)
 
+  return(ivestimentoFinal)
 }
 
 function calculaLucro(quantidade, precoCompra, precoAtual) {
   var resultadoLucroPrejuizo = (precoAtual-precoCompra)*quantidade
-  return resultadoLucroPrejuizo
+  var resultadoLucroFinal = resultadoLucroPrejuizo.toFixed(2)
+ 
+  return (resultadoLucroFinal)
 }
 
 function calcularpercentual(quantidade, precoCompra, precoAtual){
   var investimentoTotal = (quantidade*precoCompra)
-  var lucroPrejuizo = (precoCompra - precoAtual) * 100
+  var lucroPrejuizo = (precoAtual-precoCompra ) * 100
   var resultadoPorcentagem = (lucroPrejuizo*100)/investimentoTotal
+  var resultadoFinal = resultadoPorcentagem.toFixed(2)
   
-  return resultadoPorcentagem
+  return (resultadoFinal)
 }
-
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 btnSalvar.onclick = e => {
 
   if (sAtivo.value == '' || sQuantidade.value == '' || sPrecoMedio.value == '' || sPrecoAtual.value == '') {
@@ -120,7 +122,6 @@ btnSalvar.onclick = e => {
   loadItens()
   id = undefined
 }
-
 
 function loadItens() {
   itens = getItensBD()
